@@ -248,41 +248,55 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 					$links[] = $paged + 1;
 				}
 			 
-				echo '<div class="navigation"><ul>' . "\n";
+				echo '<div class="Page Navigation"><ul class="pagination justify-content-center">' . "\n";
 			 
 				/** Previous Post Link */
 				if ( get_previous_posts_link() )
-					printf( '<li>%s</li>' . "\n", get_previous_posts_link() );
+					{
+					printf( '<li class="page-item">%s</li>' . "\n", get_previous_posts_link('alaa') );
+					// previous_posts_link( 'Newer Entries' );
+					// printf( '<li class="page-item disabled"'.previous_posts_link( 'Newer Entries' ).'</li>');
+					// printf( '<li class="page-item disabled">%s</li>' . "\n", previous_posts_link( 'Newer Entries' ) );
+					// echo '<li class="page-item disabled">'.previous_posts_link( 'Newer Entries' ).'</li>';
+						// echo '<li class="page-item"><a class="page-link" href="';
+						// previous_posts();
+						// echo '"> Previous </a></li>';
+					}
 			 
 				/** Link to first page, plus ellipses if necessary */
 				if ( ! in_array( 1, $links ) ) {
-					$class = 1 == $paged ? ' class="active"' : '';
+					$class = 1 == $paged ? ' class="page-item active"' : '';
 			 
-					printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
+					printf( '<li%s class="page-item"><a class="page-link" href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
 			 
 					if ( ! in_array( 2, $links ) )
-						echo '<li>…</li>';
+						echo '<li class="page-item">…</li>';
 				}
 			 
 				/** Link to current page, plus 2 pages in either direction if necessary */
 				sort( $links );
 				foreach ( (array) $links as $link ) {
-					$class = $paged == $link ? ' class="active"' : '';
-					printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $link ) ), $link );
+					$class = $paged == $link ? ' class="page-item active"' : '';
+					printf( '<li%s class="page-item"><a class="page-link" href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $link ) ), $link );
 				}
 			 
 				/** Link to last page, plus ellipses if necessary */
 				if ( ! in_array( $max, $links ) ) {
 					if ( ! in_array( $max - 1, $links ) )
-						echo '<li>…</li>' . "\n";
+						echo '<li class="page-item">…</li>' . "\n";
 			 
-					$class = $paged == $max ? ' class="active"' : '';
-					printf( '<li%s><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
+					$class = $paged == $max ? ' class="page-item active"' : '';
+					printf( '<li%s class="page-item"><a class="page-link" href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
 				}
 			 
 				/** Next Post Link */
 				if ( get_next_posts_link() )
-					printf( '<li>%s</li>' . "\n", get_next_posts_link() );
+					{
+						echo '<li class="page-item"><a class="page-link" href="';
+						next_posts();
+						echo '"> Next </a></li>';
+					}
+					// printf( '<li class="page-item">%s</li>' . "\n", get_next_posts_link() );
 			 
 				echo '</ul></div>' . "\n";
 			 

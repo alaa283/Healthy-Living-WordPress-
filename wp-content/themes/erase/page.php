@@ -16,8 +16,15 @@ get_header();
 while(have_posts())
 { 
     the_post();
-?>
+    the_content();
+    ?>
 
+ <!-- <div class="row">
+<div class="col-6"></div>
+<div class="col-6">
+<?php //echo FrmFormsController::get_form_shortcode( array( 'id' => 2, 'title' => false, 'description' => false ) ); ?>
+</div>
+</div> -->
 <?php
 }
 get_footer();
